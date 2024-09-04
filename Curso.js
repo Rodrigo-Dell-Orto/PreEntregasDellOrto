@@ -1,23 +1,23 @@
 /*
-//! Variables 
+! Variables 
 
 let profesor = "Rodrigo" //La variable let Si se puede modificar
 let edad = 19
 
-//Para modificar un let
+!Para modificar un let
 profesor = "Rodri"
 edad = 20
 const nombre = "Pedro" //La variable const NO se puede modificar
-//Para se cambiada hay que cambiar de const a let la variable
-//?Siempre crear la variables en const
+!Para se cambiada hay que cambiar de const a let la variable
+?Siempre crear la variables en const
 
-//Para definir una variable de 2 palabras se escribe todo junto y con mayuscula la primera letra
+!Para definir una variable de 2 palabras se escribe todo junto y con mayuscula la primera letra
 const nombreDeCurso = "JavaScript" //Si la variable esta entre "" es string (cadena de texto)
 const anioDeNaciomiento = 2005 // Si es un numero se escribe solo y es in integer
 
 
 
-//! Operaciones con variables integer (numero)
+! Operaciones con variables integer (numero)
 
 const numero1 = 10;
 const numero2 = 20;
@@ -31,7 +31,7 @@ const resultadoDivicion = numero3 / numero1; //Divicion
 
 const resultadoSuma2 = numero1 + numero2 * numero3 / numero4;
 
-//! Operaciones con variables string (Texto)
+! Operaciones con variables string (Texto)
 
 const nombre1 = "Pepe";
 const nombre2 = "Juan"
@@ -53,7 +53,7 @@ console.log(resultadoDivicion);
 
 
 
-//! Prompt con string
+! Prompt con string
 
 const nombre = prompt("Ingrese el nombre");
 const apellido = prompt("Ingrese el apellido");
@@ -62,8 +62,8 @@ const nombreCompleto = nombre + " " + apellido;
 console.log("Bienvenido " + nombreCompleto);
 
 
-//! Prompt con integer
-//agregamos paraseInt para que me los convierta a integer 
+! Prompt con integer
+!agregamos paraseInt para que me los convierta a integer 
 const numero1 = parseInt(prompt("Ingrese un numero"));
 const numero2 = parseInt(prompt("Ingrese otro numero"));
 
@@ -74,7 +74,7 @@ console.log(resultadoSuma);
 
 
 
-//! Alert
+! Alert
 const numero1 = parseInt(prompt("Ingrese un numero"));
 const numero2 = parseInt(prompt("Ingrese otro numero"));
 
@@ -85,7 +85,7 @@ alert("El resultado de la suma es: " + resultadoSuma); //Se lo muestrta directo 
 
 
 
-//! Decimales con prompt y parseFloat
+! Decimales con prompt y parseFloat
 
 const numero = parseFloat(prompt("Ingrese un numero"));
 const numero1 = parseFloat(prompt("Ingrese un numero"));
@@ -96,7 +96,7 @@ const resultadoEntero = parseInt(numero + numero1);//Muestra el numero entero
 console.log(resultadoNumero);
 console.log(resultadoEntero);
 
-//! Condicionales 
+! Condicionales 
 if (true){
     const nombre = prompt("Ingrese el nombre");
     console.log("Hola " + nombre)
@@ -129,16 +129,16 @@ if (anio == 2024){
 
 
 
-//! Operadoes logicos
+! Operadoes logicos
 
-// Es distinto
+! Es distinto
 const numero = 15
 
 if (numero != 10){
     console.log("El numero es distinto de 10")
 }
 
-// Mayor, Menor o Igual que
+! Mayor, Menor o Igual que
 
 if (numero >  5){
     console.log("El numero es mayor a 5")
@@ -155,7 +155,7 @@ if (numero >=5){
 if (numero <= 20){
     console.log("El numero es menor o igual a 20")
 }
-// Operador AND
+! Operador AND
 
 const nombre = prompt("Ingresar el nombre")
 const apellido = prompt("Ingresar el apellido")
@@ -164,14 +164,14 @@ if ((nombre == "Pepe") && (apellido == "Rodriguez")){// Las dos condiciones tien
 console.log("Bienvenido Pepe Rodriguez")
 }
 
-// Operadore OR
+! Operadore OR
 
 if ((nombre == "Pepe") || (nombre == "Juan")){
     console.log("Bienvenido Juan o Pepe")
 }
-// Operador AND y OR Conjuntos
+! Operador AND y OR Conjuntos
 
-// Operadores AND conjuntos
+! Operadores AND conjuntos
 const nombre = prompt("Ingrese un nombre")
 const apellido = prompt("Ingrese un apellido")
 const edad = prompt("Ingrese la edad")
@@ -184,7 +184,7 @@ if (
     console.log("Bienvenido Pepe Rodrigue, que tiene mas de 18")
 }
 
-// Operadores OR conjuntos
+! Operadores OR conjuntos
 const nombre = prompt("Ingrese un nombre")
 
 if (
@@ -195,7 +195,7 @@ if (
     console.log("Bienvenido Pepe, Pedro, Marcos")
 }
 
-// Combinar AND y OR
+! Combinar AND y OR
 const nombre = prompt("Ingrese un nombre")
 const edad = prompt("Ingrese la edad")
 
@@ -205,8 +205,8 @@ if (
     console.log("Bienvenido Pepe, Pedro, Marcos")
 }
 
-// Operadores estrictos
-//Iguales
+! Operadores estrictos
+!Iguales
 const numero1 = 15
 const numero2 = "15"
 
@@ -218,7 +218,7 @@ if (numero1 === numero2){ //Toma de diferente el valor del num y el tipo de dato
     console.log("Son Iguales")
 }
 
-//Distintos
+!Distintos
 const numero1 = 15
 const numero2 = "15"
 
@@ -230,7 +230,7 @@ if (numero1 !== numero2){
     console.log("Son estric distintos")
 }
 
-// Operador NOT
+! Operador NOT
 
 const numero1 = 20
 const esNumero20 = (numero1 === 20)
@@ -239,9 +239,9 @@ if (!esNumero20) {
     console.log("El numero es 20")
 }
 
-//! Operador de contador
+! Operador de contador
 
-//i++ es lo mismo que poner (i = i + 1)
+!i++ es lo mismo que poner (i = i + 1)
 
 for (let i = 1; i <= 5; i++){
     console.log(i)
@@ -273,7 +273,7 @@ for (let i = 0; i < 5; i++){
     console.log("Hola " + nombre)
 }
 
-//! Operador de Bucle 
+! Operador de Bucle 
 
 let nombre = prompt("Ingrese nombre")
 
@@ -320,7 +320,7 @@ while(opcion != 0){
     opcion = parseInt(prompt("Ingrese la opcion 1-Atencion al cliente, 2-Soporte tecnico, 3-Ventas, 0-Salir"))
 }
 
-//! Funciones 
+! Funciones 
 
 function imprimirNombre(){
     const nombre = prompt("Ingrese nombre")
@@ -330,7 +330,7 @@ function imprimirNombre(){
 imprimirNombre()//para que la funcion pudo funcionar, se la tiene que llamar
 imprimirNombre()//puedo llamar a la funcio cuantas veces yo quiera
 
-//Parametros
+!Parametros
 function saludar(nombre){
     console.log("Hola su nombre es " + nombre)
 }
@@ -338,7 +338,7 @@ const nombreDePersona = prompt("Ingrese nombre")
 
 saludar (nombreDePersona)
 
-//Funcion con dos parametros
+!Funcion con dos parametros
 
 function saludar (mensaje, nombre){
     console.log(mensaje + " " + nombre)
@@ -347,7 +347,7 @@ function saludar (mensaje, nombre){
 saludar("Hola su nombre es:", "Rodrigo")
 saludar("Hi", "Rodrigo")
 
-//Funciones con numeros
+!Funciones con numeros
 
 function sumar(numero1, numero2){
     const resultado = numero1 + numero2
@@ -376,7 +376,7 @@ const resultadoResta = restar(resultadoMultiplicacion, 3)
 
 console.log(resultadoResta)
 
-//Funciones anonimas
+!Funciones anonimas
 
 const multiplicar = function(numero1, numero2){
     return numero1 * numero2
@@ -388,18 +388,18 @@ const numero2 = parseInt(prompt("Ingrese otro numero"))
 const resultadoMultiplicacion = multiplicar(numero1, numero2)
 console.log(resultadoMultiplicacion)
 
-// Funciones flecha
-//la tipica
+!Funciones flecha
+!la tipica
 const multiplicar = function(numero1, numero2){
     return numero1 * numero2
 }
 
-//modo felcha con retung
+!modo felcha con retung
 const multiplicar = (numero1, numero2) => numero1 * numero2
 
 const resultadoMultiplicacion = multiplicar(25, 2)
 console.log(resultadoMultiplicacion)
-//flecha sin retung
+!flecha sin retung
 
 const saludar = (nombre) => {
     console.log("hola como esats" + nombre)
