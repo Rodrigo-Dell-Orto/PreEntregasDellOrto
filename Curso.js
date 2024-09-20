@@ -405,7 +405,471 @@ const saludar = (nombre) => {
     console.log("hola como esats" + nombre)
 }
 saludar()
+
+
+
+
+! OBJETOS
+
+!para escribir elemenos de un mismo concepto podemos utilizar objetos
+
+const nombre = "Pepe"
+const apellido = "Rodriguez"
+const edad = 20
+
+!ahora mas simplificado
+
+const  persona = {
+    nombre: "pepe",
+    apellido: "rodriguez",
+    edad: 21,
+}
+console.log(persona)
+
+!acceder a las propiedades del elemento
+
+console.log(persona.apellido)
+console.log(persona["apellido"] )
+
+! accedear a propiedeades que no existen
+
+console.log(persona.atrhdr)
+console.log(persona["axfgnrs"] )
+
+!Modificar propiedades de un objeto
+
+const  persona = {
+    nombre: "pepe",
+    apellido: "rodriguez",
+    edad: 21,
+}
+persona.edad = 31
+persona.edad++
+
+console.log(persona.edad)
+
+!Crear objetos con prompt
+?forma 1
+const producto = {
+    nombre: "",
+    precio: 0,
+    stock: 0,
+}
+
+const nombreProducto = prompt("Ingrese nombre de producto")
+const precioProducto = parseFloat(prompt("Ingrese precio"))
+const stockProducto = parseInt(prompt("Ingrese stock"))
+
+producto.nombre = nombreProducto
+producto.precio = precioProducto
+producto.stock = stockProducto
+
+console.log(producto)
+
+?forma 2
+
+const nombreProducto = prompt("Ingrese nombre de producto")
+const precioProducto = parseFloat(prompt("Ingrese precio"))
+const stockProducto = parseInt(prompt("Ingrese stock"))
+
+const producto = {
+    nombre: nombreProducto,
+    precio: precioProducto,
+    stock: stockProducto,
+}
+console.log(producto)
+
+!Constructores
+
+function Persona (nombre, apellido, edad) {
+    this.nombre = nombre
+    this.apellido = apellido
+    this.edad = edad
+    this.trabajo = "Programador" //ponemos ingresarle una propiedad fija
+}
+
+const persona1 = new Persona("rodrigo", "dell orto", 20)
+const persona2 = new Persona("pepe", "juan", 40)
+
+console.log(persona1)
+console.log(persona2)
+
+function Persona (nombre, apellido, edad) {
+    this.nombre = nombre
+    this.apellido = apellido
+    this.edad = edad
+    
+    this.saludar = function(nombre){
+        console.log("Hola " + nombre)
+    }
+}
+
+const persona1 = new Persona("Pepe, Gonzales, 20")
+
+console.log(persona1)
+persona1.saludar("Lautaro")
+
+! Objeto string
+
+const nombre = "Hola Pepe" 
+
+console.log(typeof nombre)
+
+?Utilizar propiedades y metodos de string
+
+console.log(nombre.length)//muestra cantidad de caracteres 
+console.log(nombre.toUpperCase())//pasa todo a mayusculas
+console.log(nombre.toLowerCase())//pasa todo a minusculas
+console.log(nombre)
+
+const nuevoString = nombre.concat(" ¿Como estas?")
+console.log(nuevoString)
+
+const numero = 5
+
+console.log(typeof numero)
+
+! Operador IN y FOR IN
+
+const persona = {
+    nombre: "Pepe",
+    edad: 20,
+    apellido: "Gonzales"
+}
+
+console.log("nombre" in persona)//me devuelve true o false
+
+for(const nombrePropiedad in persona) {
+    console.log("Propiedad: " + nombrePropiedad + " -Valor: " + persona[nombrePropiedad])
+}
+
+!CLASES
+
+function Persona (nombre, apellido, edad) {
+    this.nombre = nombre
+    this.apellido = apellido
+    this.edad = edad
+    
+    this.saludar = function(nombre){
+        console.log("Hola " + nombre)
+    }
+}
+
+class Persona {
+    consturctor (nombre, apellido, edad) {
+        this.nombre = nombre
+        this.apellido = apellido
+        this.edad = edad
+    }
+    saludar(nombre) {
+        console.log("Hola! " + nombre)
+    }
+    despedir(nombre) {
+        console.log("Adios! " + nombre)
+    }
+}
+
+const persona1 = new Persona("Pepe", "Gonzales", 40)
+
+console.log(persona1)
+
+persona1.saludar("Lautaro")
+persona1.despedir("Rodrigo ") 
+
+//!Valores de referencia
+
+//copia valores de variables
+let numero = 10
+let numero2 = numero
+
+numero = 20
+
+console.log(numero) //20
+console.log(numero2) //10
+
+//ahora con objetos
+
+let persona = {
+    nombre: "Gonzalo",
+    edad: 30,
+}
+
+let persona2 = persona
+
+persona.nombre = "Pepe"
+
+console.log(persona.nombre)
+console.log(persona2.nombre)
+
+
+//! ARRAY
+
+const nombres = ["Pedro", "Lucas", "Maria"]
+
+const segundoNombre = nombres[1]
+
+const saludo ="Hola " + segundoNombre + " como estas"
+
+console.log(saludo)
+
+//!Reecorrer lista
+
+const nombreDeProductos = [
+    'Yogurt',
+    'Leche',
+    'Manteca',
+    'Lechuga'
+]
+
+// console.log(nombreDeProductos.length) nos devuelve la cantidad de elementos 
+
+for(let i = 0; i < nombreDeProductos.length; i++) {
+    console.log(nombreDeProductos[i])
+}
+
+//! Agregar elelemntos a una lista
+
+const nombres = ["Pedro", "Rodri"]
+
+console.log(nombres)
+
+nombres.push("Mariano") //el push agrega los elementos al final de la lista
+nombres.push("Rodri")
+nombres. push("Toto", "Pepe")
+
+nombres.unshift("Lucas") //el unshift agrega los elementos al principio de la lista
+
+console.log(nombres)
+
+//! Eliminaar elementos del array
+
+const productos = [
+    'Yogurt',
+    'Leche',
+    'Manteca',
+    'Lechuga'
+]
+
+productos.pop()// elimina el ultimo elemento de la lista
+
+productos.shift()// elimina el primer elemento de la lista
+
+console.log(productos)
+
+//! Splice
+
+const productos = [
+    'Yogurt',
+    'Leche',
+    'Manteca',
+    'Lechuga',
+    'Papa',
+    'Cebolla'
+]
+
+//productos.splice(1, 3) //elimina de tal elemento a al elemento
+
+//productos.splice(3) //asi elimina todo del elemento 3 hasta el final
+
+productos.splice(0, 2) //elimina los 2 primeros elementos
+
+productos.splice(2, 0) //no elimina nada
+
+console.log(productos)
+
+!Join
+
+const productos = [
+    'Yogurt',
+    'Leche',
+    'Manteca',
+    'Lechuga',
+    'Papa',
+    'Cebolla'
+]
+
+const listaDeProductos = productos.join(" -") //separa cada elemento de la lista por lo que le indiquemos, no altera el array
+
+console.log(listaDeProductos)
+
+!Concat
+
+
+const productos1 = [
+    "Tomate",
+    "Leche"
+]
+const productos2 = [
+    "Jabon",
+    "Papa"
+]
+
+Forma 1 no
+for(let i = 0; i < productos2.length; i++) {
+    productos1.push(productos2[i])
+}
+
+console.log(productos1)
+
+Forma 2 si
+const producto = productos1.concat (productos2) // concatena los elementos, no altera el array
+
+console.log(producto)
+
+!Slice
+
+const productos = [
+    'Yogurt',
+    'Leche',
+    'Manteca',
+    'Lechuga',
+    'Papa',
+    'Cebolla'
+]
+
+const productosDeMedio = productos.slice(1, 4) //
+
+const productosDeMedio = productos.slice(1) // copia hasta el final
+
+const productosDeMedio = productos.slice(2, 0) //no devuelve nada
+
+
+console.log(productosDeMedio)
+
+!IndexOf
+
+const productos = [
+    'yogurt',
+    'leche',
+    'manteca',
+    'lechuga',
+    'papa',
+    'cebolla'
+]
+
+const nombreBusca = prompt("Ingrese Producto")
+
+console.log(
+    productos.indexOf(
+        nombreBusca.toLowerCase()
+    )
+) //indica donde esta posicionado el elemento
+
+!Includes
+
+const nombre = [
+    'pedro',
+    'juan',
+    'miguel'
+]
+
+console.log(
+    nombre.includes('juan') //indica si se encuentra a o no el elemento
+)
+
+!Reverse
+
+const nombre = [
+    'yogurt',
+    'leche',
+    'manteca',
+    'lechuga',
+    'papa',
+    'cebolla'
+]
+
+nombre.reverse()//altera el array
+
+
+console.log(nombre)
+
+! ARRAYS CON OBJETOS
+
+
+Version 1
+? Objetos
+
+class Producto {
+    constructor (nombre, precio) {
+        this.nombre = nombre
+        this.precio = precio
+    }
+}
+
+? Funciones
+function encontrarProducto(nombreProducto) {
+
+    let indice = -1
+
+    for(let i = 0; i < listaProducto.length; i++) {
+
+        const producto = listaProducto[i]
+
+        if(producto.nombre === nombreProducto) {
+            indice = i
+            break;
+        }
+    }
+    
+    return indice
+}
+
+Version 2 con FOR OF
+
+class Producto {
+    constructor (nombre, precio) {
+        this.nombre = nombre
+        this.precio = precio
+    }
+    calcularSubtotal(cantidad) {
+        return cantidad * this.precio
+    }
+}
+
+function encontrarProducto(nombreProducto) {
+    let elemento = false
+    
+    for(const producto of listaProducto) {
+        if(producto.nombre.toLowerCase() === nombreProducto.toLowerCase()) {
+            elemento = producto
+            break;
+        }
+    }
+    
+    return  elemento
+}
+
+//Inicio del programaro
+
+const productos1 = new Producto("Arroz", 15)
+const productos2 = new Producto("Jabon", 25)
+const productos3 = new Producto("Tomate", 50)
+
+const listaProducto = [
+    productos1,
+    productos2,
+    productos3,
+]
+
+let nombreProducto = prompt("Ingrese el nombre del producto - ESC PARA SALIR")
+
+while(nombreProducto !== "ESC" ) {
+    
+const productoEncontrado = encontrarProducto(nombreProducto)
+
+if(productoEncontrado !== false) {
+    const cantidad = parseInt(prompt("Ingrese la cantidad"))
+    const subTotal = productoEncontrado.calcularSubtotal(cantidad)
+    alert("EL SUBTOTAL ES: $" + subTotal)
+} else {
+    alert("Producto No Encontrado")
+}
+nombreProducto = prompt("Ingrese el nombre del producto - ESC PARA SALIR")
+}
 */
+
+
+
 
 
 
