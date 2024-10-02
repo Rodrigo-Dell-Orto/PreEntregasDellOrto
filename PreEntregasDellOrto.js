@@ -49,20 +49,18 @@ console.log("Cantidad de alumnos Aprobados: " + apro)
 console.log("Cantidad de alumnos Desaprobados: " + desa)
 console.log("Alumno con mejor promedio: " + mejoralumno + " " + mejornota)
 
-*/
 
 
 
 
+! PRE ENTREGA 2
 
+//Calculadora basica
 
-//! PREENTREGA2
-
-// Variables globales
 let nombre = prompt("Ingrese su nombre:");
 let operaciones = [];
 
-// Objeto que almacena una operación
+
 class Operacion {
     constructor(tipo, valor1, valor2, resultado) {
         this.tipo = tipo;
@@ -72,7 +70,7 @@ class Operacion {
     }
 }
 
-// Funciones para las operaciones básicas
+
 function sumar(a, b) {
     return a + b;
 }
@@ -92,9 +90,9 @@ function dividir(a, b) {
         alert("No se puede dividir por 0");
         return null;
     }
-}
+}g
 
-// Capturar operación del usuario
+
 function realizarOperacion() {
     let tipo = prompt(`Hola ${nombre}, ¿qué operación te gustaría hacer? (sumar, restar, multiplicar, dividir)`).toLowerCase();
     let valor1 = parseFloat(prompt("Ingrese el primer valor:"));
@@ -126,7 +124,7 @@ function realizarOperacion() {
     }
 }
 
-// Filtrar operaciones realizadas
+
 function filtrarOperaciones(tipo) {
     let filtradas = operaciones.filter(operacion => operacion.tipo === tipo);
     console.log(`Operaciones de tipo ${tipo}:`, filtradas);
@@ -139,17 +137,83 @@ while (continuar) {
     continuar = confirm("¿Quieres realizar otra operación?");
 }
 
-// Ejemplo de cómo filtrar
 filtrarOperaciones('sumar');
 
+*/
 
 
 
 
 
 
+//! PRE ENTREGA 3
 
+// Obtener elementos del DOM 
+const form = document.getElementById('nota-form')
+const resultDiv = document.getElementById('result')
+const messageDiv = document.getElementById('message')
+const otroPromedioBtn = document.getElementById('otro-promedio-btn')
+const historialDiv = document.getElementById('historial')
 
+// Funciones
+function calcularPromedio(notas) {
+    const total = notas.reduce((acc, nota) => acc + nota, 0)
+    return total / notas.length
+}
 
+function guardarEnHistorial(nombre, promedio) {
+    const historial = JSON.parse(localStorage.getItem('historial')) || []
+    historial.push({ nombre, promedio })
+    localStorage.setItem('historial', JSON.stringify(historial))
+}
 
+function mostrarHistorial() {
+    const historial = JSON.parse(localStorage.getItem('historial')) || []
+    historialDiv.innerHTML = '<h2>Historial de Promedios</h2>'
 
+    historial.forEach(entry => {
+        const div = document.createElement('div')
+        div.textContent = `Nombre: ${entry.nombre}, Promedio: ${entry.promedio.toFixed(2)}`
+        historialDiv.appendChild(div)
+    })
+}
+
+//Inicio programa
+form.addEventListener('submit', function (event) {
+    event.preventDefault()
+
+    const nombre = document.getElementById('nombre').value;
+    const nota1 = parseFloat(document.getElementById('nota1').value)
+    const nota2 = parseFloat(document.getElementById('nota2').value)
+    const nota3 = parseFloat(document.getElementById('nota3').value)
+    const nota4 = parseFloat(document.getElementById('nota4').value)
+
+    // Calcular el promedio
+    const promedio = calcularPromedio([nota1, nota2, nota3, nota4])
+
+    // Mostrar el resultado en el DOM
+    resultDiv.textContent = `El promedio de ${nombre} es: ${promedio.toFixed(2)}`
+
+    // Determinar si el alumno está aprobado o no
+    if (promedio >= 6) {
+        messageDiv.textContent = "Estado: Aprobado"
+        messageDiv.style.color = "green"
+    } else {
+        messageDiv.textContent = "Estado: Desaprobado"
+        messageDiv.style.color = "red"
+    }
+
+    guardarEnHistorial(nombre, promedio)
+
+    mostrarHistorial()
+
+    otroPromedioBtn.style.display = 'block'
+});
+
+// Evento para restablecer el formulario
+otroPromedioBtn.addEventListener('click', function () {
+    form.reset()
+    resultDiv.textContent = ''
+    messageDiv.textContent = ''
+    otroPromedioBtn.style.display = 'none'
+});

@@ -858,15 +858,52 @@ while(nombreProducto !== "ESC" ) {
 const productoEncontrado = encontrarProducto(nombreProducto)
 
 if(productoEncontrado !== false) {
-    const cantidad = parseInt(prompt("Ingrese la cantidad"))
-    const subTotal = productoEncontrado.calcularSubtotal(cantidad)
-    alert("EL SUBTOTAL ES: $" + subTotal)
+    
+const cantidad = parseInt(prompt("Ingrese la cantidad"))
+const subTotal = productoEncontrado.calcularSubtotal(cantidad)
+alert("EL SUBTOTAL ES: $" + subTotal)
+
 } else {
     alert("Producto No Encontrado")
 }
 nombreProducto = prompt("Ingrese el nombre del producto - ESC PARA SALIR")
 }
+
+
+//Sin funciones de orden superior
+
+function mayorQueDiez(numero) {
+    return numero > 10
+}
+function mayorQueVeinte(numero) {
+    return numero > 20
+}
+function mayorQueQuince(numero) {
+    return numero > 15
+}
 */
+
+function mayorQue (numeroAComparar) {
+    return function(numero) {
+        return numero > numeroAComparar
+    }
+}
+
+const mayorQueDiez = mayorQue(10)
+const mayorQueVeinte = mayorQue(20)
+const mayorQueQuince = mayorQue(15)
+
+console.log(mayorQueDiez)
+//Inicio del programa
+
+const numero = 20
+
+console.log(mayorQueDiez(numero)) 
+console.log(mayorQueVeinte(numero)) 
+console.log(mayorQueQuince(numero)) 
+
+
+
 
 
 
