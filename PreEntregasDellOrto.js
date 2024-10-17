@@ -139,13 +139,6 @@ while (continuar) {
 
 filtrarOperaciones('sumar');
 
-*/
-
-
-
-
-
-
 //! PRE ENTREGA 3
 
 // Obtener elementos del DOM 
@@ -170,7 +163,7 @@ function guardarEnHistorial(nombre, promedio) {
 function mostrarHistorial() {
     const historial = JSON.parse(localStorage.getItem('historial')) || []
     historialDiv.innerHTML = '<h2>Historial de Promedios</h2>'
-
+    
     historial.forEach(entry => {
         const div = document.createElement('div')
         div.textContent = `Nombre: ${entry.nombre}, Promedio: ${entry.promedio.toFixed(2)}`
@@ -181,33 +174,33 @@ function mostrarHistorial() {
 //Inicio programa
 form.addEventListener('submit', function (event) {
     event.preventDefault()
-
+    
     const nombre = document.getElementById('nombre').value;
     const nota1 = parseFloat(document.getElementById('nota1').value)
     const nota2 = parseFloat(document.getElementById('nota2').value)
     const nota3 = parseFloat(document.getElementById('nota3').value)
     const nota4 = parseFloat(document.getElementById('nota4').value)
-
+    
     // Calcular el promedio
     const promedio = calcularPromedio([nota1, nota2, nota3, nota4])
-
+    
     // Mostrar el resultado en el DOM
     resultDiv.textContent = `El promedio de ${nombre} es: ${promedio.toFixed(2)}`
-
+    
     // Determinar si el alumno está aprobado o no
     if (promedio >= 6) {
         messageDiv.textContent = "Estado: Aprobado"
         messageDiv.style.color = "green"
     } else {
         messageDiv.textContent = "Estado: Desaprobado"
-        messageDiv.style.color = "red"
-    }
+    messageDiv.style.color = "red"
+}
 
-    guardarEnHistorial(nombre, promedio)
+guardarEnHistorial(nombre, promedio)
 
-    mostrarHistorial()
+mostrarHistorial()
 
-    otroPromedioBtn.style.display = 'block'
+otroPromedioBtn.style.display = 'block'
 });
 
 // Evento para restablecer el formulario
@@ -219,62 +212,66 @@ otroPromedioBtn.addEventListener('click', function () {
 });
 
 
+*/
 //!ENTREGA FINAL
 
 
 $(document).ready(function() {
-    const alumnos = [];
+    const alumnos = []
 
-    // Función para calcular el promedio
-    const calcularPromedio = (notas) => {
-        const suma = notas.reduce((total, nota) => total + nota, 0);
-        return (suma / notas.length).toFixed(2);
-    };
-
-    // Función para verificar si el alumno está aprobado
-    const estaAprobado = (promedio) => promedio >= 6;
+    // Generación del DOM
+    const generarDOM = (nuevoAlumno, promedio, status) => {
+        $('#result').append(`
+            <div class="alumno">
+                <h3>${nuevoAlumno.nombre}</h3>
+                <p>Promedio: ${promedio}</p>
+                <p>Status: ${status}</p>
+            </div>
+        `)
+    }
 
     // Cargar datos desde un archivo JSON
     const cargarDatos = async () => {
         try {
-            const response = await fetch('data.json'); // Asegúrate de que el archivo esté en la misma carpeta
-            if (!response.ok) throw new Error('Error en la carga de datos');
+            const response = await fetch('data.json')
+            if (!response.ok) throw new Error('Error en la carga de datos')
 
-            const data = await response.json();
+            const data = await response.json()
 
             // Procesar cada alumno del JSON
             data.forEach(alumno => {
-                const promedio = calcularPromedio(alumno.notas);
-                const status = estaAprobado(promedio) ? "Aprobado" : "Desaprobado";
+                const promedio = calcularPromedio(alumno.notas)
+                const status = estaAprobado(promedio) ? "Aprobado" : "Desaprobado"
 
                 // Crear un objeto alumno y agregarlo al array
-                const nuevoAlumno = { nombre: alumno.nombre, promedio, status };
-                alumnos.push(nuevoAlumno);
-                
+                const nuevoAlumno = { nombre: alumno.nombre, promedio, status }
+                alumnos.push(nuevoAlumno)
+
                 // Generar el DOM de resultados
-                $('#result').append(`
-                    <div class="alumno">
-                        <h3>${nuevoAlumno.nombre}</h3>
-                        <p>Promedio: ${promedio}</p>
-                        <p>Status: ${status}</p>
-                    </div>
-                `);
-            });
+                generarDOM(nuevoAlumno, promedio, status)
+            })
         } catch (error) {
-            console.error('Error al cargar los datos:', error);
-            $('#result').append(`<p>Error al cargar datos: ${error.message}</p>`);
+            console.error('Error al cargar los datos:', error)
+            $('#result').append(`<p>Error al cargar datos: ${error.message}</p>`)
         }
+    }
+
+    // Funciónes
+    const calcularPromedio = (notas) => {
+        const suma = notas.reduce((total, nota) => total + nota, 0)
+        return (suma / notas.length).toFixed(2);
     };
 
-    // Llamar a la función para cargar los datos al inicio
-    cargarDatos();
+    const estaAprobado = (promedio) => promedio >= 6
 
-    // Manejar el envío del formulario
+    cargarDatos()
+
+    // Inicio del programa
     $('#nota-form').on('submit', function(event) {
-        event.preventDefault(); // Evitar el envío del formulario
+        event.preventDefault()
 
         // Capturar los valores del formulario
-        const nombre = $('#nombre').val();
+        const nombre = $('#nombre').val()
         const notas = [
             parseFloat($('#nota1').val()),
             parseFloat($('#nota2').val()),
@@ -282,33 +279,21 @@ $(document).ready(function() {
             parseFloat($('#nota4').val())
         ];
 
-        // Calcular promedio y determinar estado
-        const promedio = calcularPromedio(notas);
-        const status = estaAprobado(promedio) ? "Aprobado" : "Desaprobado";
+        const promedio = calcularPromedio(notas)
+        const status = estaAprobado(promedio) ? "Aprobado" : "Desaprobado"
 
-        // Crear un objeto alumno
-        const nuevoAlumno = { nombre, promedio, status };
-        alumnos.push(nuevoAlumno);
+        const nuevoAlumno = { nombre, promedio, status }
+        alumnos.push(nuevoAlumno)
 
-        // Generar el DOM de resultados
-        $('#result').append(`
-            <div class="alumno">
-                <h3>${nuevoAlumno.nombre}</h3>
-                <p>Promedio: ${promedio}</p>
-                <p>Status: ${status}</p>
-            </div>
-        `);
+        generarDOM(nuevoAlumno, promedio, status)
 
-        // Limpiar el formulario
-        $('#nota-form')[0].reset();
+        $('#nota-form')[0].reset()
 
-        // Mostrar el botón para calcular otro promedio
-        $('#otro-promedio-btn').show();
-    });
+        $('#otro-promedio-btn').show()
+    })
 
-    // Manejar el botón para calcular otro promedio
     $('#otro-promedio-btn').on('click', function() {
-        $('#result').empty();
-        $(this).hide();
-    });
-});
+        $('#result').empty()
+        $(this).hide()
+    })
+})
