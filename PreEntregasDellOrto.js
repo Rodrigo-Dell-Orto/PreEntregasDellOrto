@@ -217,3 +217,98 @@ otroPromedioBtn.addEventListener('click', function () {
     messageDiv.textContent = ''
     otroPromedioBtn.style.display = 'none'
 });
+
+
+//!ENTREGA FINAL
+
+
+$(document).ready(function() {
+    const alumnos = [];
+
+    // Función para calcular el promedio
+    const calcularPromedio = (notas) => {
+        const suma = notas.reduce((total, nota) => total + nota, 0);
+        return (suma / notas.length).toFixed(2);
+    };
+
+    // Función para verificar si el alumno está aprobado
+    const estaAprobado = (promedio) => promedio >= 6;
+
+    // Cargar datos desde un archivo JSON
+    const cargarDatos = async () => {
+        try {
+            const response = await fetch('data.json'); // Asegúrate de que el archivo esté en la misma carpeta
+            if (!response.ok) throw new Error('Error en la carga de datos');
+
+            const data = await response.json();
+
+            // Procesar cada alumno del JSON
+            data.forEach(alumno => {
+                const promedio = calcularPromedio(alumno.notas);
+                const status = estaAprobado(promedio) ? "Aprobado" : "Desaprobado";
+
+                // Crear un objeto alumno y agregarlo al array
+                const nuevoAlumno = { nombre: alumno.nombre, promedio, status };
+                alumnos.push(nuevoAlumno);
+                
+                // Generar el DOM de resultados
+                $('#result').append(`
+                    <div class="alumno">
+                        <h3>${nuevoAlumno.nombre}</h3>
+                        <p>Promedio: ${promedio}</p>
+                        <p>Status: ${status}</p>
+                    </div>
+                `);
+            });
+        } catch (error) {
+            console.error('Error al cargar los datos:', error);
+            $('#result').append(`<p>Error al cargar datos: ${error.message}</p>`);
+        }
+    };
+
+    // Llamar a la función para cargar los datos al inicio
+    cargarDatos();
+
+    // Manejar el envío del formulario
+    $('#nota-form').on('submit', function(event) {
+        event.preventDefault(); // Evitar el envío del formulario
+
+        // Capturar los valores del formulario
+        const nombre = $('#nombre').val();
+        const notas = [
+            parseFloat($('#nota1').val()),
+            parseFloat($('#nota2').val()),
+            parseFloat($('#nota3').val()),
+            parseFloat($('#nota4').val())
+        ];
+
+        // Calcular promedio y determinar estado
+        const promedio = calcularPromedio(notas);
+        const status = estaAprobado(promedio) ? "Aprobado" : "Desaprobado";
+
+        // Crear un objeto alumno
+        const nuevoAlumno = { nombre, promedio, status };
+        alumnos.push(nuevoAlumno);
+
+        // Generar el DOM de resultados
+        $('#result').append(`
+            <div class="alumno">
+                <h3>${nuevoAlumno.nombre}</h3>
+                <p>Promedio: ${promedio}</p>
+                <p>Status: ${status}</p>
+            </div>
+        `);
+
+        // Limpiar el formulario
+        $('#nota-form')[0].reset();
+
+        // Mostrar el botón para calcular otro promedio
+        $('#otro-promedio-btn').show();
+    });
+
+    // Manejar el botón para calcular otro promedio
+    $('#otro-promedio-btn').on('click', function() {
+        $('#result').empty();
+        $(this).hide();
+    });
+});
